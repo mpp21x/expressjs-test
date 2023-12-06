@@ -1,0 +1,56 @@
+<h1>User Index {{title}}</h1>
+
+<table class="table table-striped table-hover">
+      <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">name</th>
+      <th scope="col">age</th>
+      <th scope="col">score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{!-- Loop through the students array --}}
+    {{#each students}}
+    <tr>
+      <th scope="row">{{@index}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.age}}</td>
+      <td>{{this.score}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+
+  </table>
+
+
+<h3>{{test.name}}</h3>
+
+{{!-- If user is logged then show user name else show nothing --}}
+{{#if theStudentsIsGreaterThen3}}
+    <p>There are more than 3 students.</p>
+        {{else}}
+    <p>There are less than 3 students .</p>
+        {{/if}}
+
+{{!-- <script>
+  const students = [
+    {name: 'John', age: 20, score: 85},
+    {name: 'Mary', age: 22, score: 90},
+    {name: 'Jane', age: 21, score: 75},
+  ];
+  // Convert students to HTML table rows
+    const rows = students.map((student, index) => {
+        return `
+        <tr>
+            <th scope="row">${index + 1}</th>
+            <td>${student.name}</td>
+            <td>${student.age}</td>
+            <td>${student.score}</td>
+        </tr>
+        `;
+    });
+    // Add rows to table body
+    const tableBody = document.querySelector('#table-body');
+    tableBody.innerHTML = rows.join('');
+</script> --}}
