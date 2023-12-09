@@ -1,2 +1,26 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+<h3>Here &amp;</h3>
+<h2>Hi {{user.name}}. Your email is {{user.email}}</h2>
+
+{{#with user}}
+<h2>Hi {{name}}. Your email is {{email}}</h2>
+{{/with}}
+
+
+{{ myHtml }}
+
+<script>
+    // JavaScript comment
+</script>
+
+<ul >
+  {{#each userNames}}
+        {{#if @index}}
+            <li>{{this.name}}</li>
+        {{else}}
+            <li>{{matt_say this.name}}</li>
+        {{/if}}
+
+  {{/each}}
+</ul>

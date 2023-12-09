@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
+router.get('/index.html', function(req, res, next) {
   const students = [
     {name: 'John', age: 20, score: 85},
     {name: 'Mary', age: 22, score: 90},
