@@ -3,8 +3,6 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  
-
   res.render('index', 
     { 
       title: 'Express',
@@ -21,6 +19,22 @@ router.get('/', function(req, res, next) {
       myHtml: '<h1>My Html</h1>',
     }
  );
+});
+
+router.post('/create', function(req, res, next) {
+  res.send(req.body);
+});
+
+router.patch('/', function(req, res, next) {
+  res.send({
+    msg: 'update successfully'
+  })
+});
+
+router.delete('/', function(req, res, next) {
+  res.send({
+    msg: 'delete successfully'
+  })
 });
 
 module.exports = router;

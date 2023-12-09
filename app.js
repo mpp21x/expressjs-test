@@ -17,6 +17,7 @@ var fs = require('fs');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const { log } = require('console');
 
 
 /**
@@ -55,10 +56,31 @@ app.set('view engine', 'hbs');
 /**
  * 4. 設置 expressjs 的 middleware
  */
-app.use(logger('dev'));
-app.use(express.json());
+app.use(function(req, res, next){
+    console.log(`${req.method} ${req.path} ${res.statusCode}`);
+    next();
+});
+// app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+/**
+ * const static = function(dirPath) {
+    return function(req, res, next) {
+        const path = req.path;
+        const filePath = `${__dirname}/${dirPath}${path}`;
+        // 檢查現在這個請求的路徑，是否有對應到 public 資料夾裡面的檔案
+        if(fs.existsSync(filePath)) {
+            // 如果有，就直接回傳檔案內容
+            res.send(fs.readFileSync(filePath, 'utf8'));
+            return;
+        }
+
+        next();
+    }
+}
+app.use(static('public'));
+ */
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -69,9 +91,16 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 
-
 /**
  * 6. 設置 error handler
  */
+app.use(function(err, req, res, next) {
+    console.log('進入 error handler');
+
+    res.status(500).send({
+        msg: 'Something went wrong',
+        error: err.message,
+    });
+});
 
 module.exports = app;

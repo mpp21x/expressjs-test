@@ -1,7 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/index.html', function(req, res, next) {
+router.get('/', function(req, res, next) {
+  
+  console.log('有跑到 user Router 這裏!');
+  next(new Error('something went wrong'));
+  return;
+
   const students = [
     {name: 'John', age: 20, score: 85},
     {name: 'Mary', age: 22, score: 90},
